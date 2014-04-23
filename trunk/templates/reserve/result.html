@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>MostafaCo Travel</title>
+<meta name="keywords" content="free website templates, hotel and travel, CSS, XHTML, design layout" />
+<meta name="description" content="Hotel and Travel - free website template provided by templatemo.com" />
+<link href="{{ STATIC_URL }}/reserve/css/templatemo_style.css" rel="stylesheet" type="text/css" />
+<link href="{{ STATIC_URL }}/reserve/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="templatemo_container">
+	<!-- Free Website Template by www.TemplateMo.com -->
+    <div id="templatemo_header">
+        <div id="website_title">
+            <div id="title">
+	            Hotel &amp; Travel
+            </div>
+            <div id="salgon">
+	            The best service at the lowest price</div>
+        </div>
+    </div> <!-- end of header -->
+
+    <div id="templatemo_banner">
+    	<div id="templatemo_menu">
+            <ul>
+                <li><a href="/reserve/" class="current">Home</a></li>
+                <li><a href="/reserve/hotel/">Hotels</a></li>
+                <li><a href="/reserve/offer_all/">All Offers</a></li>
+                <li><a href="/reserve/reservation/">Booking</a></li>
+                <li><a href="/reserve/login/">SignIn</a></li>
+                <li><a href="/reserve/register/" class="last">SignUp</a></li>
+            </ul>
+        </div>
+    </div> <!-- end of banner -->
+
+    <div id="templatemo_content">
+
+    	<div id="content_left">
+        	<div class="content_left_section">
+
+            </div> <!-- end of booking -->
+
+            <a href="/reserve/offer_month/" target="_parent"><img src="{{ STATIC_URL }}/reserve/images/templatemo_special_offer.jpg" alt="special offer" /></a>
+
+            <div class="cleaner_h30">&nbsp;</div>
+            <div class="cleaner_horizontal_divider_01">&nbsp;</div>
+            <div class="cleaner_h30">&nbsp;</div>
+
+            <div class="content_left_section">
+            <div class="content_title_01">Latest News</div>
+
+                <div class="news_title">Nam auctor aliquam leo</div>
+                    <p>Pellentesque est elit, sagittis sit amet porttitor ut, ornare vel turpis. Vivamus eu enimvitae neque its posuere rutrum. <span style='color:#ff5400'>read more</span></p>
+                <div class="cleaner_h30">&nbsp;</div>
+
+                <div class="news_title">Suspendisse pharetra eros molestie</div>
+                    <p>Vivamus eu enimvitae neque its posuere rutrum. Nam accumsan turpis at turpis molestie a convallis forte tor ornare. <span style='color:#ff5400'>read more</span></p>
+                  <div class="cleaner_h20">&nbsp;</div>
+                    <div class="rc_btn_02"><a href="#">View All</a></div>
+                </div>   <!-- end of news section -->
+
+                <div class="cleaner_h30">&nbsp;</div>
+	            <div class="cleaner_horizontal_divider_01">&nbsp;</div>
+	            <div class="cleaner_h30">&nbsp;</div>
+
+        </div> <!-- end of content left -->
+        <div id="content_right">
+{######################################### OUR CODE START FROM HERE ###################################################}
+<div class="content_right_section">
+        <div class="content_title_01">You Search for Name:{{ name }}</div>
+    <span style="color: #428bca;font-size: 20px">You want to check-in in: </span> <span style="font-size: 20px">{{ date_in }}</span></br></br>
+    <span style="color: #428bca;font-size: 20px">You want to check-out in: </span> <span style="font-size: 20px">{{ date_out }}</span>
+    </div>
+    <div class="content_right_section">
+    <div class="content_title_01"></div>
+    </div>
+        <div class="cleaner_h10">&nbsp;</div>
+        {% if hotel %}
+            {% for x in hotel %}
+                <div class="content_right_section">
+                <div class="content_title_01">{{ x.hotel_name }}</div>
+                    <span style="color: #428bca;font-size: 20px">Address: </span> <span style="font-size: 16px">{{ x.hotel_add }}</span></br></br>
+                    <span style="color: #428bca;font-size: 20px">WebSite:</span> <span style="font-size: 16px"><a href="{{ x.hotel_url }}">{{ x.hotel_url }}</a></span></br></br>
+                </div>
+                <form action="../booking/" method="post">{% csrf_token %}
+                    <input type="hidden" name="hotel_name" value="{{ x.hotel_name }}"/>
+                    <input type="hidden" name="hotel_id" value="{{ x.id }}"/>
+                    <input type="hidden" name="check_in" value="{{ date_in }}"/>
+                    <input type="hidden" name="check_out" value="{{ date_out }}"/>
+                    <input type="hidden" name="days" value="{{ days }}"/>
+                    <input type="submit" value="Book Now" class="btn btn-primary btn-lg" style="position: relative;left: 190px"/>
+                </form>
+                 <div class="cleaner_h10">&nbsp;</div>
+            {% endfor %}
+        {% else %}
+           <div class="content_right_section">
+        <div class="content_title_01">No Result For Your search</div>
+           <p> Try Again </p>
+            </div>
+        {% endif %}
+
+{################################################### END OF CODE ######################################################}
+            </div> <!-- end of content right -->
+        <div class="cleaner">&nbsp;</div>
+    </div>
+    <div id="templatemo_footer">
+    Copyright © 2014 | <strong>MostafaCo Travel</strong> | <a href="#"><strong>Contact</strong></a> | <a href="#"><strong>About Us</strong></a>
+        <div style="clear: both; margin-top: 10px;">
+
+        </div>
+	</div> <!-- end of footer -->
+</div> <!-- end of container -->
+<!-- Free Website Templates @ TemplateMo.com -->
+</body>
+</html>

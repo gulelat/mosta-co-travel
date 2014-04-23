@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>MostafaCo Travel</title>
+<meta name="keywords" content="free website templates, hotel and travel, CSS, XHTML, design layout" />
+<meta name="description" content="Hotel and Travel - free website template provided by templatemo.com" />
+<link href="{{ STATIC_URL }}/reserve/css/templatemo_style.css" rel="stylesheet" type="text/css" />
+<link href="{{ STATIC_URL }}/reserve/css/style.css" rel="stylesheet" type="text/css" />
+<script language="javascript" type="text/javascript" src="{{ STATIC_URL }}/reserve/js/jquery-1.11.0.min.js"></script>
+    <script language="javascript" type="text/javascript" src="{{ STATIC_URL }}/reserve/js/jquery.cycle2.min.js"></script>
+    <style type="text/css">
+    .active{
+        z-index:99;
+    }
+</style>
+</head>
+<body>
+<div id="templatemo_container">
+	<!-- Free Website Template by www.TemplateMo.com -->
+    <div id="templatemo_header">
+        <div id="website_title">
+            <div id="title">
+	            Hotel &amp; Travel
+            </div>
+            <div id="salgon">
+	            The best service at the lowest price</div>
+        </div>
+    </div> <!-- end of header -->
+
+    <div id="templatemo_banner">
+    	<div id="templatemo_menu">
+            <ul>
+                <li><a href="/reserve/" class="current">Home</a></li>
+                <li><a href="/reserve/hotel/">Hotels</a></li>
+                <li><a href="/reserve/offer_all/">All Offers</a></li>
+                <li><a href="/reserve/reservation/">Booking</a></li>
+                <li><a href="/reserve/login/">SignIn</a></li>
+                <li><a href="/reserve/register/" class="last">SignUp</a></li>
+            </ul>
+        </div>
+    </div> <!-- end of banner -->
+
+    <div id="templatemo_content">
+
+    	<div id="content_left">
+        	<div class="content_left_section">
+
+            </div> <!-- end of booking -->
+
+            <a href="/reserve/offer_month/" target="_parent"><img src="{{ STATIC_URL }}/reserve/images/templatemo_special_offer.jpg" alt="special offer" /></a>
+
+            <div class="cleaner_h30">&nbsp;</div>
+            <div class="cleaner_horizontal_divider_01">&nbsp;</div>
+            <div class="cleaner_h30">&nbsp;</div>
+
+            <div class="content_left_section">
+            <div class="content_title_01">Latest News</div>
+
+                <div class="news_title">Nam auctor aliquam leo</div>
+                    <p>Pellentesque est elit, sagittis sit amet porttitor ut, ornare vel turpis. Vivamus eu enimvitae neque its posuere rutrum. <span style='color:#ff5400'>read more</span></p>
+                <div class="cleaner_h30">&nbsp;</div>
+
+                <div class="news_title">Suspendisse pharetra eros molestie</div>
+                    <p>Vivamus eu enimvitae neque its posuere rutrum. Nam accumsan turpis at turpis molestie a convallis forte tor ornare. <span style='color:#ff5400'>read more</span></p>
+                  <div class="cleaner_h20">&nbsp;</div>
+                    <div class="rc_btn_02"><a href="#">View All</a></div>
+                </div>   <!-- end of news section -->
+
+                <div class="cleaner_h30">&nbsp;</div>
+	            <div class="cleaner_horizontal_divider_01">&nbsp;</div>
+	            <div class="cleaner_h30">&nbsp;</div>
+
+        </div> <!-- end of content left -->
+        <div id="content_right">
+{######################################### OUR CODE START FROM HERE ###################################################}
+{#        {{ hotel_id }}#}
+{#            {% if hotel_data %}#}
+{#            {{ hotel_data.hotel_url }}#}
+{##}
+{#        {% endif %}#}
+{#        </br>#}
+{#        </br>#}
+{#        {% for x in rates %}#}
+{#            Rate:{{ x.rate }}#}
+{#        {% endfor %}#}
+{#        </br>#}
+{#        </br>#}
+{#        {% for y in comments %}#}
+{#            Comment:{{ y.comment }}#}
+{#        {% endfor %}#}
+{#        </br>#}
+{#        </br>#}
+        <div class="content_title_01">{{ hotel_data.hotel_name }} <span style="font-size: 12px">    Avg Rate: {{ avg_rate }}/5</span></div>
+        <div class="cycle-slideshow" data-cycle-speed="5" data-cycle-manual-speed="1" >
+        {% for z in images %}
+            <img src={{ MEDIA_URL }}{{ z.image }} style="position:absolute;" class="active" height="300" width="530"/>
+        {% endfor %}
+        </div><div class="cleaner_h10">&nbsp;</div>
+        <div class="content_right_section">
+        <div class="content_title_01"> Comments</div>
+        <ul>
+            {% for y in comments %}
+            <li><p style="font-size: 14px;color: #428bca"> {{ y.comment }}</p></li>
+        {% endfor %}
+        </ul>
+        </div>
+        <hr/>
+        <form action="../confirm/" method="post">{% csrf_token %}
+            <div class="form-group">
+            <input type="hidden" name="hotel_id" value={{ hotel_id }} />
+            <input type="hidden" name="date_in" value={{ date_in }} />
+            <input type="hidden" name="date_out" value={{ date_out }} />
+            <input type="hidden" name="days" value={{ days }} />
+                <label for="comment"><h4 style="color:#428bca ">Comment:</h4></label>
+                <input type="text" name="comment" value="" id="comment" class="form-control" placeholder="Enter your Comment Here">
+                <label for="rate"><h4 style="color:#428bca ">Rating:</h4></label>
+                <select name="rate" id="rate" class="form-control" value="3" style="height: 30px">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="single"><h4 style="color:#428bca ">Single Room:</h4></label>
+                <select name="single" id="single" class="form-control" value="0" style="height: 30px">
+                    <option>0</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="double"><h4 style="color:#428bca ">Double Room:</h4></label>
+                <select name="double" id="double" class="form-control" value="0" style="height: 30px">
+                    <option>0</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="triple"><h4 style="color:#428bca ">Triple Room:</h4></label>
+                <select name="triple" id="triple" class="form-control" value="0" style="height: 30px">
+                    <option>0</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="suite"><h4 style="color:#428bca ">Suite:</h4></label>
+                <select name="suite" id="suite" class="form-control" value="0" style="height: 30px">
+                    <option>0</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                </select>
+            </div>
+            <input type="submit" value="Confirm" class="btn btn-primary btn-lg" style="position: relative;left: 190px"/>
+        </form></br></br>
+        <script>
+    $('.cycle-slideshow').cycle({
+    speed: 5,
+    manualSpeed: 1
+});
+</script>
+{################################################### END OF CODE ######################################################}
+            </div> <!-- end of content right -->
+        <div class="cleaner">&nbsp;</div>
+    </div>
+    <div id="templatemo_footer">
+    Copyright © 2014 | <strong>MostafaCo Travel</strong> | <a href="#"><strong>Contact</strong></a> | <a href="#"><strong>About Us</strong></a>
+        <div style="clear: both; margin-top: 10px;">
+
+        </div>
+	</div> <!-- end of footer -->
+</div> <!-- end of container -->
+<!-- Free Website Templates @ TemplateMo.com -->
+</body>
+</html>
